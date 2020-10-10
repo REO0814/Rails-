@@ -4,6 +4,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   
   def setup
     @user = users(:michael)
+    @inactivated = users(:hoge)
   end
 
   test "login with invalid information" do
@@ -51,5 +52,13 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     # クッキーを削除してログイン
     log_in_as(@user, remember_me: '0')
     assert_empty cookies['remember_token']
+  end
+  
+  test "login with inactivated user" do
+    get login_path
+    assert_template 'sessions/new'
+    log_in_as(@inactivated)
+    follow_redirect!
+    assert_template 'static_pages/home'
   end
 end
