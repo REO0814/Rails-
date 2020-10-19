@@ -1,6 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'rails',        '5.1.6'
+gem 'rails',        '5.2'
+gem "aws-sdk-s3", require: false
+gem 'image_processing'
+gem 'mini_magick'
+gem 'active_storage_validations', '0.8.2'
 gem 'bcrypt',         '3.1.12'
 gem 'faker'
 gem 'kaminari'
