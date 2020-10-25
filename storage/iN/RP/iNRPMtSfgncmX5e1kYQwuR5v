@@ -1,9 +1,0 @@
-# puts 1+2
-# a="Hello,World"
-# puts a
-# b="んちゃ"
-# puts b
-def add(a,b)
-  return a+b
-end
-puts add(4,5)

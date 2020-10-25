@@ -16,9 +16,14 @@ class MicropostsController < ApplicationController
 
   def destroy
     @micropost.destroy
-    flash[:success] = "Micropost deleted"
+    @user = @micropost.user || @user = current_user
+    # flash[:success] = "Micropost deleted"
     # redirect_to request.referrer || root_url
-    redirect_back(fallback_location: root_url)
+    
+    respond_to do |format|
+      format.html { redirect_back(fallback_location: root_url) }
+      format.js { flash.now[:success] = "#{@micropost.user.name}は#{@micropost.content}のつかいかたをきれいにわすれた！" }
+    end
   end
 
   private

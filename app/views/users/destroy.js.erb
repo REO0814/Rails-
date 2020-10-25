@@ -1,0 +1,5 @@
+<!--document.querySelector('#user-<%= @user.id %>').style.display = 'none';-->
+$('#user-<%= @user.id %>').hide();
+<% flash.each do |message_type, message| %>
+  $("#aflash").html('<div class="alert alert-<%= message_type %>"><%= message %></p>')
+<% end %>

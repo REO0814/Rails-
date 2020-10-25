@@ -1,0 +1,17 @@
+<!--document.querySelector('#micropost-<%= @micropost.id %>').style.display = 'none';-->
+$('#micropost-<%= @micropost.id %>').hide();
+<!--document.querySelector('#total').textContent = "Microposts (<%= @user.microposts.count %>)";-->
+<!--document.querySelector('#statu').textContent = "<%= pluralize(current_user.microposts.count, "micropost") %>";-->
+<!--$('#statu').text("<%= pluralize(current_user.microposts.count, "micropost") %>");-->
+$(function() {
+    if($('#total')[0]) {
+      $('#total').text("Microposts (<%= @user.microposts.count %>)");
+    } else if($('#statu').length) {
+      $('#statu').text("<%= pluralize(current_user.microposts.count, "micropost") %>");
+    } else {
+        alert("失敗してます");
+    }
+});
+<% flash.each do |message_type, message| %>
+  $("#aflash").html('<div class="alert alert-<%= message_type %>"><%= message %></p>')
+<% end %>
