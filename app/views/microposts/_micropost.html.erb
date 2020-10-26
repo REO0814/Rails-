@@ -14,7 +14,10 @@
       <% if current_user?(micropost.user) %>
       <%= link_to "delete", micropost, method: :delete, remote: true, class: "delete",
                                        data: { confirm: "You sure?" } %>
-    <% end %>
+      <% end %>
+    </span>
+    <span id="like">
+      <%= render 'shared/like_form', micropost: micropost %>
     </span>
   </div>
 </li>

@@ -23,4 +23,6 @@ Rails.application.routes.draw do
     get :tigers, on: :collection
   end
   resources :relationships,       only: [:create, :destroy]
+  resources :likes,       only: [:create, :destroy]
+
 end

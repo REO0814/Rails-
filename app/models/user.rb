@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships, 
                         source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+  has_many :likes, dependent: :destroy
+  has_many :liking, through: :likes, source: :micropost
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
   before_create :create_activation_digest
@@ -95,6 +97,20 @@ class User < ApplicationRecord
   # 現在のユーザーがフォローしてたらtrueを返す
   def following?(other_user)
     following.include?(other_user)
+  end
+  
+  # 投稿をいいねする
+  def like(micropost)
+    liking << micropost
+  end
+
+  # 投稿を取り消す
+  def unlike(micropost)
+    self.likes.find_by(micropost_id: micropost.id).destroy
+  end
+  
+  def liking?(micropost)
+    self.liking.include?(micropost)
   end
   
   private
